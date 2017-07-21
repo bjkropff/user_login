@@ -1,0 +1,58 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>To Do List</title>
+</head>
+<body>
+  <!-- Begin body; start nav -->
+  <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+            <li role="presentation"><a href="/tasks">Tasks</a></li>
+            <li role="presentation"><a href="/categories">Categories</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">To-Do List</h3>
+      </div>
+      <!-- End nav; start jumbo -->
+      <div class="jumbotron">
+          <h1>Welcome to To Do List</h1>
+
+          <h3><a href="/categories">Add or view a category</a></h3>
+          <h3><a href="/tasks">Add or view a task</a></h3>
+      </div>
+      <!-- End jumbo; start list -->
+      <div class="row marketing">
+
+
+          {% if categories is not empty %}
+           <div class="col-lg-6">
+             <h4>Categories</h4>
+             <p>Here are all your categories:</p>
+             <ul>
+                 {% for category in categories %}
+                     <li><a href="/categories/{{ category.getId }}">{{ category.getType }}</a></li>
+                 {% endfor %}
+             </ul>
+           </div>
+
+          {% endif %}
+
+
+           {% if tasks is not empty %}
+           <div class="col-lg-6">
+           <h4>Tasks</h4>
+               <p>Here are all of your tasks:</p>
+               <ul>
+                   {% for task in tasks %}
+                       <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a></li>
+
+                   {% endfor %}
+               </ul>
+             </div>
+
+           {% endif %}
+</body>
+</html>
