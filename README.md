@@ -31,10 +31,14 @@ If you are using on this project on a different setup than described above, you 
 This is a sign that the PDO object you've instantiated does not match the location or credentials of your test database. Most likely the localhost port number in your app.php, TestTest.php, and CategoryTest.php file doesn't match the MySQL port number in your MAMP/LAMP/WAMP preferences. To fix the error in MAMP, open MAMP, click Prefer
 
 #### Create a database
-Create a database, open MySQL and enter the following:
-> CREATE DATABASE to_do;
-> USE to_do;
-> CREATE TABLE tasks (id serial PRIMARY KEY, description VARCHAR (255));
+To create a database, open MySQL (I use DevDesktop and the terminal it uses) and enter the following:
+$ mysql -u <username>
+> CREATE DATABASE cred;
+> USE users;
+>   CREATE TABLE users (id serial PRIMARY KEY, name VARCHAR(60), pass VARCHAR(128), mail VARCHAR(254), role VARCHAR(64), status TINYINT(1), picture VARCHAR(1024));
+
+
+(Note: I have taken my password out of here. As such you might need to use the -p flag followed by your password or root password)
 
 #### MySQL
 
@@ -49,6 +53,8 @@ I found that number on the phpMyAdmin page where it stated:
 ```
 127.0.0.1:33067
 ```
+
+##Testing
 
 
 ##Copyright
