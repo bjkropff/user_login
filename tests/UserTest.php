@@ -17,13 +17,10 @@
 
     class UserTest extends PHPUnit_Framework_TestCase
     {
-
         protected function tearDown()
         {
             User::deleteAll();
         }
-
-
 
         function test_getName()
         {
@@ -34,12 +31,9 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $result = $test_user->getName();
-
             //Assert
             $this->assertEquals($name, $result);
         }
@@ -53,13 +47,10 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $test_user->setName("George");
             $name = $test_user->getName();
-
             //Assert
             $this->assertTrue($name == "George");
         }
@@ -73,12 +64,9 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $result = $test_user->getPass();
-
             //Assert
             $this->assertEquals($pass, $result);
         }
@@ -92,13 +80,10 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $test_user->setPass("dragon");
             $pass = $test_user->getPass();
-
             //Assert
             $this->assertTrue($pass == "dragon");
         }
@@ -112,12 +97,9 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $result = $test_user->getMail();
-
             //Assert
             $this->assertEquals($mail, $result);
         }
@@ -131,13 +113,10 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $test_user->setMail("george@geosomething.net");
             $mail = $test_user->getMail();
-
             //Assert
             $this->assertTrue($mail == "george@geosomething.net");
         }
@@ -151,12 +130,9 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $result = $test_user->getRole();
-
             //Assert
             $this->assertEquals($role, $result);
         }
@@ -170,21 +146,16 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             $isAdmin = false;
-
             //Act
             if (!$isAdmin) {
                 $test_user->setRole(1);
                 $isAdmin = true;
             }
-
             $role = $test_user->getRole();
-
             //Assert
-              $this->assertEquals($role, $isAdmin);
+            $this->assertEquals($role, $isAdmin);
         }
 
         function test_getStatus()
@@ -196,12 +167,9 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $result = $test_user->getStatus();
-
             //Assert
             $this->assertEquals($status, $result);
         }
@@ -215,11 +183,8 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             $isOnline = 0;
-
             //Act
             if ($status == 0) {
                 $isOnline = 1;
@@ -227,7 +192,6 @@
             }
             $test_user->setStatus(1);
             $status = $test_user->getStatus();
-
             //Assert
             $this->assertEquals($isOnline, $status);
         }
@@ -241,12 +205,9 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $result = $test_user->getPicture();
-
             //Assert
             $this->assertEquals($picture, $result);
         }
@@ -260,36 +221,14 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
             //Act
             $test_user->setPicture("mynewimage.png");
             $picture = $test_user->getPicture();
-
             //Assert
             $this->assertEquals($picture, "mynewimage.png");
         }
 
-        function test_save()
-        {
-            //Arrange
-            $name = "Fred";
-            $pass = "1a2b3c";
-            $mail = "user@place.com";
-            $role = 0;
-            $status = 0;
-            $picture = "myimage.jpg";
-
-            $test_user = new User($name, $pass, $mail, $role, $status, $picture);
-
-            //Act
-            $executed = $test_user->save();
-
-            // Assert
-            // assertTrue will return the string if false
-            $this->assertTrue($executed, "Task not successfully saved to database");
-        }
 
         function test_getId()
         {
@@ -300,14 +239,30 @@
             $role = 0;
             $status = 0;
             $picture = "myimage.jpg";
-
             $test_user = new User($name, $pass, $mail, $role, $status, $picture);
             $test_user->save();
             //Act
             $result = $test_user->getId();
-
             //Assert
             $this->assertTrue(is_numeric($result) && $result !== false);
+        }
+
+        function test_save()
+        {
+          //Arrange
+          $name = "Fred";
+          $pass = "1a2b3c";
+          $mail = "user@place.com";
+          $role = 0;
+          $status = 0;
+          $picture = "myimage.jpg";
+          $test_user = new User($name, $pass, $mail, $role, $status, $picture);
+          $test_user->save();
+          //Act
+          $executed = $test_user->getId();
+          // Assert
+          // assertTrue will return the string if false
+          $this->assertEquals($executed, $test_user->getId());
         }
 
         function test_getAll()
@@ -324,28 +279,38 @@
             $executed = $test_user->save();
 
             //Arrange second
-            $name0 = "Fred";
-            $pass0 = "1a2b3c";
-            $mail0 = "user@place.com";
-            $role0 = 0;
-            $status0 = 0;
-            $picture0 = "myimage.jpg";
-
+            $name0 = "Budd";
+            $pass0 = "dragon";
+            $mail0 = "budd@place.com";
+            $role0 = 1;
+            $status0 = 1;
+            $picture0 = "buddImage.jpg";
             $test_user0 = new User($name0, $pass0, $mail0, $role0, $status0, $picture0);
             $executed0 = $test_user0->save();
-
             //Act
             $result = User::getAll();
-
-            // // $result = $test_user->getId();
-            // //
-            // //
-            // $new_id = $result[0]->getId();
-            // $test_user->id = $new_id;
-            // $test_user0->id = $result[0]->getId();
-
             //Assert
             $this->assertEquals([$test_user, $test_user0], $result);
+        }
+
+        function test_find()
+        {
+            //Arrange
+            $name = "Fred";
+            $pass = "1a2b3c";
+            $mail = "user@place.com";
+            $role = 0;
+            $status = 0;
+            $picture = "myimage.jpg";
+            $test_user = new User($name, $pass, $mail, $role, $status, $picture);
+            $test_user->save();
+            $executed = $test_user;
+            //Act
+            $result = User::find($name, $pass);
+            //$test_user = "This is the input: Fred 1a2b3c";
+            //Assert
+            //$result->getId() is returning null
+            $this->assertEquals($executed, $result);
         }
 
 

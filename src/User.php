@@ -101,9 +101,10 @@
                         '{$this->getStatus()}',
                         '{$this->getPicture()}')
                       ;");
+                      //return $executed;
             if ($executed) {
                   $this->id = $GLOBALS['DB']->lastInsertId();
-                return true;
+                  return true;
             } else {
                 return false;
             }
@@ -122,12 +123,42 @@
                 $status = intval($user['status']);
                 $picture = $user['picture'];
 
-                $test_user = new User($name, $pass, $mail, $role, $status, $picture);
+                $test_user = new User($name, $pass, $mail, $role, $status, $picture, $id);
 
                 array_push($users, $test_user);
             }
             return $users;
         }
+
+        static function find($search_name, $search_pass)
+        {
+            $found_user = null;
+            $query = $GLOBALS['DB']->query("SELECT * FROM users;");
+            $returned_users = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+            foreach($returned_users as $user) {
+                $name = $user['name'];
+                $pass = $user['pass'];
+                $id = $user['id'];
+                $mail = $user['mail'];
+                $role = intval($user['role']);
+                $status = intval($user['status']);
+                $picture = $user['picture'];
+                $found_user = new User($name, $pass, $mail, $role, $status, $picture);
+
+                //verify name and pass is correct
+                if ($search_pass == $pass && $search_name == $name)
+                {
+                    $found_user = new User($name, $pass, $mail, $role, $status, $picture, $id);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return $found_user;
+          }
 
     }
 ?>

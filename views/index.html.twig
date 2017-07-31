@@ -10,55 +10,19 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="/">Home</a></li>
-            <li role="presentation"><a href="/users">users</a></li>
-            <li role="presentation"><a href="/categories">Categories</a></li>
-            {% if user is not empty %}
-                <li role="presentation"><a href="/users/{{ user.getId }}">{{ user.getname }}</a></li>
-            {% endif %}
-            {% if user is empty %}
-                <li role="presentation"><a href="/login">login</a></li>
-            {% endif %}
+            <li role="presentation"><a href="/login">login</a></li>
+
           </ul>
         </nav>
         <h3 class="text-muted">To-Do List</h3>
       </div>
       <!-- End nav; start jumbo -->
       <div class="jumbotron">
-          <h1>Welcome to To Do List</h1>
+          <h1>Login here</h1>
 
-          <h3><a href="/categories">Add or view a category</a></h3>
-          <h3><a href="/users">Add or view a user</a></h3>
+          <!-- <h3><a href="/categories">Add or view a category</a></h3>
+          <h3><a href="/users">Add or view a user</a></h3> -->
       </div>
-      <!-- End jumbo; start list -->
-      <div class="row marketing">
-
-
-          {% if categories is not empty %}
-           <div class="col-lg-6">
-             <h4>Categories</h4>
-             <p>Here are all your categories:</p>
-             <ul>
-                 {% for category in categories %}
-                     <li><a href="/categories/{{ category.getId }}">{{ category.getType }}</a></li>
-                 {% endfor %}
-             </ul>
-           </div>
-
-          {% endif %}
-
-
-           {% if users is not empty %}
-           <div class="col-lg-6">
-           <h4>users</h4>
-               <p>Here are all of your users:</p>
-               <ul>
-                   {% for user in users %}
-                       <li><a href="/users/{{ user.getId }}">{{ user.getname }}</a></li>
-
-                   {% endfor %}
-               </ul>
-             </div>
-
-           {% endif %}
+  </div>
 </body>
 </html>
